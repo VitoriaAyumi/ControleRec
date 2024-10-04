@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "984873433954",
+    "project_id": "controlenotas-a3ed3",
+    "storage_bucket": "controlenotas-a3ed3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984873433954:android:e83789140385e09fafca3b",
+        "android_client_info": {
+          "package_name": "com.example.controlenotas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG9sQx7ZDTqPQJn9OIb9L8aq4IQaIU31M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:984873433954:android:5908b4bece4d30ecafca3b",
+        "android_client_info": {
+          "package_name": "com.example.controlerec"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG9sQx7ZDTqPQJn9OIb9L8aq4IQaIU31M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
