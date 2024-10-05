@@ -7,10 +7,9 @@
     <View
         android:id="@+id/containerRec"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="450dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/container_rec"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
@@ -202,25 +201,6 @@
         android:button="@drawable/checkbox"
         android:buttonTintMode="multiply"
         app:layout_constraintBottom_toBottomOf="@id/containerRec"
-        app:layout_constraintBottom_toTopOf="@id/salvarLayout"
         app:layout_constraintStart_toStartOf="@id/containerRec" />
-
-    <LinearLayout
-        android:id="@+id/salvarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        app:layout_constraintBottom_toBottomOf="@id/containerRec"
-        app:layout_constraintStart_toStartOf="@id/containerRec">
-
-        <Button
-            android:id="@+id/salvar"
-            android:layout_width="80dp"
-            android:layout_height="40dp"
-            android:layout_marginBottom="4dp"
-            android:text="Salvar" />
-
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
