@@ -45,27 +45,22 @@ public class ControleRec extends AppCompatActivity {
                     QuerySnapshot querySnapshot = task.getResult();
                     boolean possuiRecuperacao = false;
 
-                    // Configura o LinearLayout para mostrar múltiplos containers
                     LinearLayout linearLayout = findViewById(R.id.linerec);
                     linearLayout.setOrientation(LinearLayout.VERTICAL);
 
                     for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                        // Recupere os valores dos campos "prova" e "pre"
                         String prova = document.getString("prova");
                         String pre = document.getString("pre");
 
-                        // Verifique se o campo "prova" é menor que o campo "pre"
                         if (prova.compareTo(pre) < 0) {
                             possuiRecuperacao = true;
 
-                            // Recupere os valores dos campos "nomeMateria" e "nota"
                             String nomeMateria = document.getString("nomeMateria");
                             String cred = document.getString("cred");
                             String trab = document.getString("trab");
                             String list = document.getString("list");
                             String provaNota = document.getString("prova");
 
-                            // Calcule a nota
                             int nota = Integer.parseInt(cred) + Integer.parseInt(trab) + Integer.parseInt(list) + Integer.parseInt(provaNota);
 
                             // Verifique se um container com o ID de nomeMateria já existe
@@ -91,6 +86,14 @@ public class ControleRec extends AppCompatActivity {
 
                                 // Preenche os valores no novo container
                                 atualizarContainer(container, nomeMateria, nota);
+                            }
+                        }else{
+                            String nomeMateria = document.getString("nomeMateria");
+                            // Verifique se um container com o ID de nomeMateria já existe
+                            View existingContainer = linearLayout.findViewWithTag(nomeMateria);
+                            if (existingContainer != null) {
+                                // Exclui o container caso tenha um com mesmo nome no banco de dados
+                                excluirDados(nomeMateria);
                             }
                         }
                     }
@@ -173,6 +176,26 @@ public class ControleRec extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+    }
+
+    private void excluirDados(String nomeMateria) {
+        // Excluindo os dados do Firestore usando nomeMateria como chave
+        db.collection("rec").document(nomeMateria)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Firestore", "Dados de " + nomeMateria + " excluídos com sucesso!");
+                        Toast.makeText(ControleRec.this, "Dados de " + nomeMateria + " excluídos com sucesso!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e("Firestore", "Erro ao excluir dados: " + e.getMessage());
+                        Toast.makeText(ControleRec.this, "Erro ao excluir dados de " + nomeMateria, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void salvarDados(String nomeMateria, View container) {
