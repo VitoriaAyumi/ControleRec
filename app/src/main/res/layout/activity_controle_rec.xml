@@ -10,14 +10,14 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/amarelo1"
+        android:background="@color/orange_clearer"
         tools:context=".ControleRec">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/barra"
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:background="@color/azul6"
+            android:background="@color/blue_2"
             tools:ignore="MissingConstraints">
 
             <ImageView
@@ -64,7 +64,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/bebas_neue"
             android:text="RECUPERAÇÕES:"
-            android:textColor="@color/azul6"
+            android:textColor="@color/blue_2"
             android:textSize="26sp"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@+id/barra"

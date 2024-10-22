@@ -22,7 +22,7 @@
         android:layout_marginLeft="20dp"
         android:fontFamily="@font/bebas_neue"
         android:text="MATÉRIA:"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/containerRec"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -35,7 +35,7 @@
         android:layout_marginLeft="50dp"
         android:fontFamily="@font/gabriela"
         android:text="XXXX-xxxx"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/materia"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -48,7 +48,7 @@
         android:layout_marginLeft="20dp"
         android:fontFamily="@font/bebas_neue"
         android:text="PROFFESSOR(A):"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/containerRec"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -61,7 +61,7 @@
         android:layout_marginLeft="85dp"
         android:fontFamily="@font/gabriela"
         android:text="XXXX-xxxx"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/professor"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -74,7 +74,7 @@
         android:layout_marginLeft="20dp"
         android:fontFamily="@font/bebas_neue"
         android:text="NOTA:"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/containerRec"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -87,7 +87,7 @@
         android:layout_marginLeft="35dp"
         android:fontFamily="@font/gabriela"
         android:text="XXXX-xxxx"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/nota"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -100,7 +100,7 @@
         android:layout_marginLeft="20dp"
         android:fontFamily="@font/bebas_neue"
         android:text="CONTEÚDOS:"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/containerRec"
         app:layout_constraintTop_toTopOf="@+id/containerRec" />
@@ -124,7 +124,7 @@
             android:inputType="textMultiLine"
             android:paddingLeft="10dp"
             android:scrollbars="vertical"
-            android:textColor="@color/azul6"
+            android:textColor="@color/blue_2"
             android:textSize="18dp" />
 
     </LinearLayout>
@@ -137,7 +137,7 @@
         android:layout_marginLeft="20dp"
         android:fontFamily="@font/bebas_neue"
         android:text="SUJESTÕES:"
-        android:textColor="@color/azul6"
+        android:textColor="@color/blue_2"
         android:textSize="16dp"
         app:layout_constraintStart_toStartOf="@+id/containerRec"
         app:layout_constraintTop_toTopOf="@+id/containerRec"
