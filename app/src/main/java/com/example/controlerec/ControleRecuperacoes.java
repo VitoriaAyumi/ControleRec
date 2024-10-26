@@ -5,7 +5,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -27,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ControleRec extends AppCompatActivity {
+public class ControleRecuperacoes extends AppCompatActivity {
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     private boolean salvarDadosAutomaticamente = true;
@@ -85,10 +84,10 @@ public class ControleRec extends AppCompatActivity {
                     }
 
                     if (!possuiRecuperacao) {
-                        Toast.makeText(ControleRec.this, "Não possui nenhuma Recuperação", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ControleRecuperacoes.this, "Não possui nenhuma Recuperação", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(ControleRec.this, "Erro ao recuperar dados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControleRecuperacoes.this, "Erro ao recuperar dados", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,7 +114,7 @@ public class ControleRec extends AppCompatActivity {
                         conteudos.setText(document.getString("conteudos"));
                     }
                 } else {
-                    Toast.makeText(ControleRec.this, "Erro ao carregar dados", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ControleRecuperacoes.this, "Erro ao carregar dados", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -185,7 +184,7 @@ public class ControleRec extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Firestore", "Dados de " + nomeMateria + " excluídos com sucesso!");
-                        Toast.makeText(ControleRec.this, "Dados de " + nomeMateria + " excluídos com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ControleRecuperacoes.this, "Dados de " + nomeMateria + " excluídos com sucesso!", Toast.LENGTH_SHORT).show();
 
                         LinearLayout linearLayout = findViewById(R.id.linerec);
                         linearLayout.removeView(container);
@@ -195,7 +194,7 @@ public class ControleRec extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("Firestore", "Erro ao excluir dados: " + e.getMessage());
-                        Toast.makeText(ControleRec.this, "Erro ao excluir dados de " + nomeMateria, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ControleRecuperacoes.this, "Erro ao excluir dados de " + nomeMateria, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
@@ -221,14 +220,14 @@ public class ControleRec extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d("Firestore", "Dados de " + nomeMateria + " gravados com sucesso!");
-                        Toast.makeText(ControleRec.this, "Dados de " + nomeMateria + " salvos com sucesso!", Toast.LENGTH_SHORT);
+                        Toast.makeText(ControleRecuperacoes.this, "Dados de " + nomeMateria + " salvos com sucesso!", Toast.LENGTH_SHORT);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.e("Firestore", "Erro ao gravar dados: " + e.getMessage());
-                        Toast.makeText(ControleRec.this, "Erro ao salvar dados de " + nomeMateria, Toast.LENGTH_SHORT);
+                        Toast.makeText(ControleRecuperacoes.this, "Erro ao salvar dados de " + nomeMateria, Toast.LENGTH_SHORT);
                     }
                 });
 
