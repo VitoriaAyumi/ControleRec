@@ -36,7 +36,7 @@ public class ControleRecuperacoes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controle_rec);
 
-         db.collection("notas").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("notas").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -58,11 +58,12 @@ public class ControleRecuperacoes extends AppCompatActivity {
                             possuiRecuperacao = true;
 
                             String nomeMateria = document.getString("nomeMateria");
+                            String nomeProf = carregarNomeProfessor(nomeMateria);
                             float nota = calcularNota(document);
 
                             View existingContainer = linearLayout.findViewWithTag(nomeMateria);
                             if (existingContainer != null) {
-                                atualizarContainer(existingContainer, nomeMateria, nota);
+                                atualizarContainer(existingContainer, nomeMateria, nota, nomeProf);
                             } else {
                                 View container = getLayoutInflater().inflate(R.layout.activity_add_rec, linearLayout, false);
                                 container.setTag(nomeMateria);
@@ -76,7 +77,7 @@ public class ControleRecuperacoes extends AppCompatActivity {
                                 container.setLayoutParams(layoutParams);
 
                                 linearLayout.addView(container);
-                                atualizarContainer(container, nomeMateria, nota);
+                                atualizarContainer(container, nomeMateria, nota, nomeProf);
 
                                 preencherDadosDoFirestore(nomeMateria, container);
                             }
@@ -129,10 +130,13 @@ public class ControleRecuperacoes extends AppCompatActivity {
     }
 
 
-    private void atualizarContainer(View container, String nomeMateria, float nota) {
+    private void atualizarContainer(View container, String nomeMateria, float nota, String nomeProf) {
 
         TextView materiaTextView = container.findViewById(R.id.materiarec);
         materiaTextView.setText(nomeMateria);
+
+        TextView nomeProfTextView = container.findViewById(R.id.professor);
+        nomeProfTextView.setText(nomeProf);
 
         TextView notaTextView = container.findViewById(R.id.notarec);
         notaTextView.setText(String.valueOf(nota));
@@ -176,29 +180,6 @@ public class ControleRecuperacoes extends AppCompatActivity {
         });
     }
 
-
-    private void excluirDados(String nomeMateria, View container) {
-        db.collection("rec").document(nomeMateria)
-                .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d("Firestore", "Dados de " + nomeMateria + " excluídos com sucesso!");
-                        Toast.makeText(ControleRecuperacoes.this, "Dados de " + nomeMateria + " excluídos com sucesso!", Toast.LENGTH_SHORT).show();
-
-                        LinearLayout linearLayout = findViewById(R.id.linerec);
-                        linearLayout.removeView(container);
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e("Firestore", "Erro ao excluir dados: " + e.getMessage());
-                        Toast.makeText(ControleRecuperacoes.this, "Erro ao excluir dados de " + nomeMateria, Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
     private void salvarDados(String nomeMateria, View container) {
         salvarDadosAutomaticamente = false;
 
@@ -232,6 +213,25 @@ public class ControleRecuperacoes extends AppCompatActivity {
                 });
 
         salvarDadosAutomaticamente = true;
+    }
+
+    private String carregarNomeProfessor(String nomeMateria) {
+        db.collection("materias").document(nomeMateria).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                String nomeProfessor = document.getString("nomeProfessor");
+                                return nomeProfessor;  // Aqui está o erro
+                            }
+                        } else {
+                            Log.e("Firestore", "Erro ao carregar o nome do professor", task.getException());
+                            Toast.makeText(ControleRecuperacoes.this, "Erro ao carregar o nome do professor", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 }
